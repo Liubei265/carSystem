@@ -17,6 +17,9 @@ public interface CarDao {
     @Select("select * from carMessage where carName = #{carName}")
     List<Car> findByCarName(String carName);
 
+    @Select("select * from carMessage where carName like '%#{carName}%'")
+    List<Car> findByCarNamePro(String carName);
+
     @Delete("delete from carMessage where id = #{id}")
     void deleteById(int id);
 
@@ -25,4 +28,11 @@ public interface CarDao {
 
     @Insert("insert into carMessage(carName,carType,price,carSeries) values(#{carName},#{carType},#{price},#{carSeries})")
     void insertCar(Car car);
+
+
+    @Select("select carstock from carStock where carId = #{carId}")
+    Integer getStock(String carId);
+
+    @Update("update carstock set carStock=carStock-1 where carId = #{carId}")
+    void updateStock(String carId);
 }

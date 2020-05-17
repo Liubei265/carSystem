@@ -85,4 +85,28 @@ public class CarController {
         carService.insertCar(car);
         return JSONResult.ok();
     }
+
+    /**
+     * 通过carId购买车辆
+     *
+     * @param carId
+     * @return
+     */
+    @PostMapping("buyCar/{carId}")
+    public JSONResult buyCar(@PathVariable String carId) {
+        String message = carService.buyCar(carId);
+        return JSONResult.ok(message);
+    }
+
+    /**
+     * 通过车名模糊查询
+     *
+     * @param carName
+     * @return
+     */
+    @GetMapping("findByCarNamePro/{carName}")
+    public JSONResult findByCarNamePro(@PathVariable String carName) {
+        List<Car> cars = carService.findByCarNamePro(carName);
+        return JSONResult.ok(cars);
+    }
 }
